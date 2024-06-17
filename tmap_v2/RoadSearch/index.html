@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title>RoadSearch</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=RaT1JNAxgE8o362lZNH1j3HDGwsWCVAY2UXvvMV7"></script>
+  <script>
+    var clickCount = 0;
+    var markerArr = [];
+    var markerPoints = [];
+    var polyline_ = null;
+    var polylines = [];
+    var headers = {};
+    var map, marker_s, marker_e;
+  </script>
+  <script type="text/javascript" src="./initTmap.js"></script>
+  <script type="text/javascript" src="./setMarker.js"></script>
+  <script type="text/javascript" src="./reverseGeo.js"></script>
+  <script type="text/javascript" src="./drawLine.js"></script>
+  <script type="text/javascript" src="./postData.js"></script>
+  <script type="text/javascript" src="./resetData.js"></script>
+  <script type="text/javascript" src="./searchStartData.js"></script>
+  <script type="text/javascript" src="./searchEndData.js"></script>
+</head>
+<body>
+<div id="map_wrap" class="map_wrap3" style="display:flex; align-items: start;">
+  <form style="display: flex; flex-direction: column; justify-content: center; margin-left: 10px;">
+    <div id="map_div" style="width: 50%; height: 800px;"></div>
+    <div id="descriptionResult" style="margin-top: 20px;"></div>
+    <div style="display: block;">
+      <p style="margin-right:10px">----------테스트 시작----------</p>
+      <div id="testStart" style="margin-top: 20px;"></div>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+      <p style="margin-right:10px">출발지</p>
+      <input id="startInput" style="width : 200px; height:50px; vertical-align: middle;" placeholder="출발지를 입력해주세요." />
+      <button onclick="searchStartData()" style="width : 50px; height:50px; vertical-align: middle; margin-left : 10px" type="button">검색</button>
+    </div>
+    <p id="startAddress"></p>
+    <div style="display: flex; align-items: center;">
+      <p style="margin-right:10px">도착지</p>
+      <input id="endInput" style="width : 200px; height:50px; vertical-align: middle;" placeholder="도착지를 입력해주세요." />
+      <button onclick="searchEndData()"id="endSearch" style="width : 50px; height:50px; vertical-align: middle; margin-left : 10px" type="button">검색</button>
+    </div>
+    <p id="endAddress"></p>
+    <select id="travelMode" style="width:200px; margin-top: 10px; margin-left : 60px">
+      <option value="walk">도보</option>
+      <option value="publicTransport">대중교통</option>
+    </select>
+    <div style="display: block;">
+      <button onclick="postData()" type="button" style="width:200px; height:50px; margin-top: 10px; margin-left:60px">길찾기</button>
+      <button onclick="resetData()" type="button" style="width:60px; height:50px; margin-top: 10px; margin-left:6px">초기화</button>
+      
+    </div>
+  </form>
+    <div id="remoteControl" style="width: 50px; height: 200px; border: 1px solid #000; margin-left: 10px; position: relative;">
+    <div id="centerButton" style="width: 30px; height: 30px; background: #ff0000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;"></div>
+  </div>
+  <div id ="markerPoiSearch" style="margin-left:60px"></div>
+</div>
+<div class="map_act_btn_wrap clear_box"></div>
+<div id="result" style="margin-top: 20px;"></div>
+<br />
+</body>
+</html>
